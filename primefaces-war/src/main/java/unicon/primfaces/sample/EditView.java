@@ -26,8 +26,8 @@ public class EditView implements Serializable {
      
     @PostConstruct
     public void init() {
-        cars1 = service.createCars(10);
-        cars2 = service.createCars(10);
+        cars1 = service.createCars(1000);
+        cars2 = service.createCars(1000);
     }
  
     public List<Car> getCars1() {
@@ -57,8 +57,8 @@ public class EditView implements Serializable {
         Object newValue = event.getNewValue();
          
         if(newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+     //       FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+        //    FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
 
