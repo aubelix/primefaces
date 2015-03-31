@@ -7,7 +7,7 @@ import javax.inject.Named;
 @Named
 public class Bean {
 	
-	String name;
+	String name = "Primefaces demo";
 
 	public String getName() {
 		return name;
