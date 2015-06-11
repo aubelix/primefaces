@@ -1,15 +1,17 @@
 package unicon.primfaces.sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Named;
  
 @Named
-@ApplicationScoped
-public class CarService {
+@SessionScoped
+public class CarService implements Serializable  {
           
     public List<Car> createCars(int size) {
         List<Car> list = new ArrayList<Car>();

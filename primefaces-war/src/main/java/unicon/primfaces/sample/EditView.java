@@ -5,16 +5,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
 
 @Named
-@ViewScoped
+@javax.enterprise.context.SessionScoped
 public class EditView implements Serializable {
      
     private List<Car> cars1;
@@ -40,17 +38,7 @@ public class EditView implements Serializable {
      
     public void setService(CarService service) {
         this.service = service;
-    }
-     
-    public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Car Edited", ((Car) event.getObject()).getId());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Car) event.getObject()).getId());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+    }     
      
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
