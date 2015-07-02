@@ -8,7 +8,8 @@
 			<f:facet name="header">
            Cell Editing with Click and RightClick
        		</f:facet>
-
+  <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs" />
+     
 			<p:ajax event="cellEdit" listener="#{editView.onCellEdit}" update=":form:msgs" />
 			
 			<p:column headerText="Id">
@@ -30,6 +31,9 @@
 						<p:inputText value="#{car.year}" style="width:96%" label="Year" />
 					</f:facet>
 				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Progress">
+				<h:outputText value="#{car.year}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

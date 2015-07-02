@@ -4,6 +4,7 @@ public class Car {
 	
 	String id;
 	int year;
+	boolean changed = false;
 
 	public Car(String id, int year) {
 		super();
@@ -22,5 +23,13 @@ public class Car {
 	}
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	public boolean isChanged() {
+		return changed;
+	}
+
+	public void setChanged(boolean changed) {
+		this.changed = changed;
 	}
 }

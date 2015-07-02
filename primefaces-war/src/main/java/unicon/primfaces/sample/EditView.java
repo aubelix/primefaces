@@ -6,9 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
 
 @Named
@@ -24,8 +26,8 @@ public class EditView implements Serializable {
      
     @PostConstruct
     public void init() {
-        cars1 = service.createCars(1000);
-        cars2 = service.createCars(1000);
+        cars1 = service.createCars(100);
+        cars2 = service.createCars(100);
     }
  
     public List<Car> getCars1() {
@@ -56,5 +58,15 @@ public class EditView implements Serializable {
 
 	public void setTest(String test) {
 		this.test = test;
+	}
+	
+	public void save(Car c, int index) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}		
+		RequestContext.getCurrentInstance().update("form:cars1:" + index + ":save");
 	}
 }

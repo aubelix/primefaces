@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputScript library="js" name="script.js" />
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+		<p:dataTable id="cars1" var="car" value="#{editView.cars1}" rowIndexVar="iteration">
+			<f:facet name="header">Ajax Cell editing</f:facet>
+			<p:column headerText="Id">
+				<p:inputText id="modelInput" value="#{car.id}" style="width:96%">
+					<p:ajax event="change" onstart="PrimeFaces.widgets.saveButton#{iteration}.show();lastRow=#{iteration};" />
+					<p:ajax event="focus" onstart="if (lastRow != #{iteration}) console.log('')" />
+				</p:inputText>
+			</p:column>
+			<p:column headerText="Year">
+				<p:inputText value="#{car.year}" style="width:96%" label="Year">
+					<p:ajax event="change" onstart="PrimeFaces.widgets.saveButton#{iteration}.show();" />
+					<p:ajax event="focus" onstart="if (lastRow != #{iteration}) console.log('')" />
+				</p:inputText>
+			</p:column>
+			<p:column headerText="Action">
+				<p:outputLabel>Tests</p:outputLabel>
+			</p:column>
+			<p:column headerText="Action">
+				<p:panel id="save">
+					<p:panel widgetVar="saveButton#{iteration}" visible="false" closable="true" toggleable="true">
+						<p:commandButton action="#{editView.save(car, iteration)}" value="Save">
+							<p:ajax event="click" onstart="PrimeFaces.widgets.progress#{iteration}.show();" />
+						</p:commandButton>
+					</p:panel>
+					<p:panel widgetVar="progress#{iteration}" visible="false" closable="true" toggleable="true">
+						<p:graphicImage value="progress_indicator.gif" />
+					</p:panel>
+				</p:panel>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
